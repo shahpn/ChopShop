@@ -2,16 +2,24 @@ from cmath import inf
 from flask import Flask
 import random
 import heapq
+import webpageText
+
+
 
 app = Flask(__name__)
-
 @app.route("/")
-def home():
-    return "Test page <h1>HELLO<h1>"
+def siteRun():
+    a = webpageText.home()
+    return a
 
-@app.route("/<name>")
-def user(name):
-    return f"Hello {name}"
+# @app.route("/")
+# def home():
+#     text = "Test page <h1>mommy<h1>"
+#     return text
+
+# @app.route("/<name>")
+# def user(name):
+#     return f"Hello {name}"
 
 if __name__ == "__main__":
     app.run()
