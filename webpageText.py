@@ -6,16 +6,16 @@ def home():
     text ="<head>"\
     "<style>"\
     "h1 {text-align: center;}"\
-    "h2 {text-align: center;}" \
-    "p {text-align: center;}"\
-    "div {text-align: center;}"\
+    "h4 {text-align: center;}" \
+    "p {text-align: left;}"\
+    "div {text-align: center;}" \
     "</style>"\
-    "</head>"\
-    "<body>" \
-    "<body style=background-color:powderblue;>" \
+    "</head>" \
     "<title> BluPrnt </title>" \
     "<h1>Welcome To BluPrnt<h1>" \
-    "<h2> Presented to you by PythonPals &#128151 Industries <h2>"\
+    "<h4> Presented to you by PythonPals &#128151 Industries <h4>" \
+    "<body>" \
+    "<body style=background-color:powderblue;>" \
     "<p> Enter your grocery list in the section below: <p>"
     return text
 
