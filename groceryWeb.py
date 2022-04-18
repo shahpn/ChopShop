@@ -21,9 +21,9 @@ def siteRun():
 # def user(name):
 #     return f"Hello {name}"
 
-if __name__ == "__main__":
-    app.run()
-
+# if __name__ == "__main__":
+#     app.run()
+app.run()
 
 def divider():
     print("-------------------------")
