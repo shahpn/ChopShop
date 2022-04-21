@@ -18,9 +18,11 @@ def genAisleList(groceryList, aisleContents, requiredAisles=['Entrance'], i='Ais
 
     if len(set(aisleContents[i]).intersection(set(groceryList))) != 0:
 
-        removeItems = set(aisleContents[i]).intersection(set(groceryList))  # List of items to remove from the grocery list
+        removeItems = set(aisleContents[i]).intersection(
+            set(groceryList))  # List of items to remove from the grocery list
 
-        requiredAisles.append(i)  # Adds the aisle to the list of places we NEED to see bc it's just so pretty and worth the money
+        requiredAisles.append(
+            i)  # Adds the aisle to the list of places we NEED to see bc it's just so pretty and worth the money
 
         # We now remove the items from our list that also exist in our current aisle
 
@@ -37,7 +39,7 @@ def genAisleList(groceryList, aisleContents, requiredAisles=['Entrance'], i='Ais
             return requiredAisles
 
 
-    # This is for when the aisle is a miserable failure with nothing that we want. 
+    # This is for when the aisle is a miserable failure with nothing that we want.
     # Does the same check for aisle 13 to avoid falling into the abyss
 
     else:
@@ -59,11 +61,9 @@ class layout:
 
         self.dictionary = dictionary
 
-
     def printVertices(self):
 
         return f"Graph Vertices: {list(self.dictionary.keys())}"
-
 
     def printEdges(self):
 
@@ -72,15 +72,12 @@ class layout:
         for vertex in self.dictionary:
 
             for nextVertex in self.dictionary[vertex]:
-
                 aisles.append([vertex, nextVertex])
 
         return aisles
 
-
     def printGraph(self):
         print(f"Current Graph: {self.dictionary}")
-
 
     def dijkstra(self, start):
 
@@ -106,7 +103,6 @@ class layout:
                     heapq.heappush(pq, (distance, path))
 
         return distances
-
 
     def shoppingPath(self, aisles, frontPath=['Entrance'], backPath=['Checkout'], finalPath=[],
                      visited=['Entrance', 'Checkout'], totalCost=0, check=None):
@@ -162,18 +158,18 @@ class layout:
         # Traverses the aisles backward because I'm quirky. Note: I'm now realizing I probably didn't have to do this.
         # Does the same thing as the first loop, just for the back of the check list.
         for i in reversed(travel):
-        
+
             if travel[i] == 0:
                 continue
-        
+
             else:
-        
+
                 if minDist > travel[i] and i not in visited and i in aisles:
                     dest = i
                     minDist = travel[i]
-        
+
         visited.append(dest)
-        
+
         # Update fun stats
         backPath.insert(0, dest)
         totalCost += minDist
@@ -238,7 +234,6 @@ if __name__ == '__main__':
             groceryList.append(item)
             index += 1
 
-
     print()
     print("The items we need are:")
     print()
@@ -256,18 +251,18 @@ if __name__ == '__main__':
 
     divider()
 
+    # Clones edges and optimal path for ease of use. ☺
     all = aisleLayout.printEdges()
     optimal = aisleLayout.shoppingPath(aisles)
 
+    # Creates some lists to organize path sections. ☺
     firstTry = []
-    frozenFirst = []
     secondTry = []
     thirdTry = []
-    frozenThird = []
     cannotDo = []
-    moved = []
     replacements = []
 
+    # Zips the list of aisles into lists of 2 consecutive aisles for path checking. ☺
     res = list(zip(optimal, optimal[1:] + optimal[:1]))
     for item in res:
         firstTry.append(list(item))
@@ -279,6 +274,7 @@ if __name__ == '__main__':
         if item in secondTry and item != ['Checkout', 'Entrance']:
             thirdTry.append(item)
 
+    # List of path segments we can naturally complete. ☺
     print(f"Paths that can be achieved: {thirdTry}")
 
     for item in thirdTry:
@@ -287,16 +283,18 @@ if __name__ == '__main__':
 
     cannotDo = firstTry
 
+    # List of path segments that cannot be naturally completed. ☺
     print(f"Paths that cannot be achieved: {cannotDo}")
 
     divider()
 
-
+    # Function to generate paths for the segments that currently cannot be traversed. ☺
     def pathGen(start, end, currentPath):
 
         currentPath.append(start)
 
         if start == end:
+            # Path found between required start and end node. ☺
             print(f"Path found: {currentPath}")
             replacements.append(currentPath)
             return
@@ -305,20 +303,24 @@ if __name__ == '__main__':
             neighbors = []
             distances = []
 
+            # Find all potential next neighbors from the start node.
             for i in all:
                 if start in i:
                     for x in i:
                         if x is not start and x not in neighbors:
                             neighbors.append(x)
 
+            # Compare all potential neighboring nodes' weights. ☺
             for potential in neighbors:
                 for key in aisleLayout.dijkstra(potential):
                     if key is potential:
-                        distances.append({key: aisleLayout.dijkstra(potential)[end] + aisleLayout.dijkstra(start)[potential]})
+                        distances.append(
+                            {key: aisleLayout.dijkstra(potential)[end] + aisleLayout.dijkstra(start)[potential]})
 
             chosen = None
             chosenDis = None
 
+            # Determine next step in pathfinding function. ☺
             for pair in distances:
 
                 if chosen is None:
@@ -331,31 +333,33 @@ if __name__ == '__main__':
 
             pathGen(chosen, end, currentPath)
 
-
+    # Determine what path segments cannot be completed and then aim to solve them. ☺
     for neededPath in cannotDo:
-
         print(f"Path bust be found between {neededPath[0]} and {neededPath[1]}")
         pathGen(neededPath[0], neededPath[1], [])
         divider()
 
     shoppingPathClone = aisleLayout.shoppingPath(aisles)
 
+    # Zip again. ☺
     res = list(zip(shoppingPathClone, shoppingPathClone[1:] + shoppingPathClone[:1]))
 
     cannotDo = [tuple(x) for x in cannotDo]
 
+    # Format new path segments. ☺
     for i in res:
 
         if i in cannotDo:
             next1 = replacements.pop(0)
             res[res.index(i)] = next1
 
-    if ['Checkout', 'Entrance'] in res : res.remove(['Checkout', 'Entrance'])
+    if ['Checkout', 'Entrance'] in res:
+        res.remove(['Checkout', 'Entrance'])
 
     print(f"Full Path: {res}")
 
     cleanPath = []
-    
+
     for val in res:
         for inVal in val:
             cleanPath.append(inVal)
@@ -365,6 +369,7 @@ if __name__ == '__main__':
     previous_value = None
     finalPath = []
 
+    # Replace old path segments which cannot be completed with new segments that can be completed. ☺
     for elem in cleanPath:
         if elem != previous_value:
             finalPath.append(elem)
