@@ -21,7 +21,19 @@ def home():
     "<p> Enter your grocery list in the section below: <p>" \
     \
     """<textarea style="resize: none" rows=25 cols=40 placeholder="Be sure to check our coupons!" ></textarea>""" \
-    """<img align=right src="BluPrnt/img.jpg" alt="Path map cannot be loaded">""" \
+    "<img align=right src= BluPrnt/img.jpg alt=Path map cannot be loaded>"\
+    # "< label for =cars >"\
+    # "<Choose a car: >" \
+    # "</label> "\
+    # "<select name = cars id = cars >"\
+    # "< option value = volvo > Volvo < / option >"\
+    # < option
+    # value = "saab" > Saab < / option >
+    # < option
+    # value = "mercedes" > Mercedes < / option >
+    # < option
+    # value = "audi" > Audi < / option >
+    "<select>"
     # Import image in directory and align right. Borders?
 
     #Gabe yada yada 'to-do comments. Don't mind me ty
