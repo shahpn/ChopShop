@@ -22,11 +22,11 @@ def home():
     \
     """<textarea style="resize: none" rows=25 cols=40 placeholder="Be sure to check our coupons!" ></textarea>""" \
     "<img align=right src= BluPrnt/img.jpg alt=Path map cannot be loaded>"\
-    # "< label for =cars >"\
-    # "<Choose a car: >" \
-    # "</label> "\
-    # "<select name = cars id = cars >"\
-    # "< option value = volvo > Volvo < / option >"\
+    "< label for =cars >"\
+    "<Choose a car: >" \
+    "</label> "\
+    "<select name = cars id = cars >"\
+    "<option value = volvo > Volvo </option >"\
     # < option
     # value = "saab" > Saab < / option >
     # < option
