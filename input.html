@@ -7,9 +7,17 @@
         h1 {text-align: center;}
         h4 {text-align: center;}
         p {text-align: left;}
-        div {text-align: center; overflow-y: auto;}
+        div {text-align: center;}
         * {
           box-sizing: border-box;
+        }
+
+        #table-wrapper {
+          height: 400px;
+          width: 50%;
+          padding: 0px;
+          /*margin: 0px auto 0px auto;*/
+          overflow: auto;
         }
 
         #myInput {
@@ -25,10 +33,9 @@
 
         #myTable {
           border-collapse: collapse;
-          width: 50%;
+          width: 100%;
           border: 1px solid #ddd;
           font-size: 18px;
-          overflow-y: auto;
         }
 
         #myTable th, #myTable td {
@@ -63,196 +70,528 @@
 <p> Enter your grocery list in the section below: </p>
 <img id=myImg align=right src="static/Aisles_Resized.png" alt="Path map cannot be loaded">
 <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names..">
-<textarea id=myArea rows=25 cols=30 placeholder="Be sure to check our coupons!"></textarea>
+<textarea id="myArea" rows=25 cols=30 placeholder="Be sure to check our coupons!" name="myTextArea"></textarea>
 
-
-<table style="overflow-y: auto;" id="myTable">
+<div id="table-wrapper">
+  <table style="overflow-y: auto;" id="myTable">
   <tbody style="height: 100px; overflow-x: scroll">
   <tr class="header">
-    <th style="width:20%;" onclick="sortTable(0)">Item</th>
+    <th style="width:30%;" onclick="sortTable(0)">Item</th>
     <th style="width:20%;">Aisle</th>
-    <th style="width:20%;">Add to cart</th>
     <th style="width:10%;">Qty</th>
+    <th style="width:20%;">Add to cart</th>
 
   </tr>
   <tr>
     <td>Spaghetti</td>
     <td>Aisle 1</td>
-    <td><button class="submit">Add to cart</button></td>
     <td><input id="spaghettiBtn" type="number" min="0" max="10" step="1" value="0"></td>
+    <td><button onclick="input('Spaghetti', spaghettiBtn.value);" type="submit">Add to cart</button></td>
   </tr>
   <tr>
     <td>Rigatoni</td>
     <td>Aisle 1</td>
-    <td><button class="submit">Add to cart</button></td>
     <td><input id="rigatoniBtn" type="number" min="0" max="10" step="1" value="0"></td>
+    <td><button onclick="input('Rigatoni', rigatoniBtn.value);" type="submit">Add to cart</button></td>
   </tr>
   <tr>
     <td>Macaroni</td>
     <td>Aisle 1</td>
-    <td><button class="submit">Add to cart</button></td>
     <td><input id="macaroniBtn" type="number" min="0" max="10" step="1" value="0"></td>
+    <td><button onclick="input('Macaroni', macaroniBtn.value);" type="submit">Add to cart</button></td>
   </tr>
   <tr>
     <td>Penne</td>
     <td>Aisle 1</td>
-    <td><button class="submit">Add to cart</button></td>
     <td><input id="penneBtn" type="number" min="0" max="10" step="1" value="0"></td>
+    <td><button onclick="input('Penne', penneBtn.value);" type="submit">Add to cart</button></td>
   </tr>
-    <tr>
+  <tr>
     <td>Pasta Sauce</td>
     <td>Aisle 1</td>
-    <td><button class="submit">Add to cart</button></td>
     <td><input id="pastaSauceBtn" type="number" min="0" max="10" step="1" value="0"></td>
+    <td><button onclick="input('Pasta Sauce', pastaSauceBtn.value);" type="submit">Add to cart</button></td>
   </tr>
-    <tr>
+  <tr>
     <td>Meatballs</td>
     <td>Aisle 1</td>
-    <td><button class="submit">Add to cart</button></td>
     <td><input id="meatballsBtn" type="number" min="0" max="10" step="1" value="0"></td>
+    <td><button onclick="input('Meatballs', meatballsBtn.value);" type="submit">Add to cart</button></td>
   </tr>
 
    <tr>
     <td>Coke</td>
     <td>Aisle 2</td>
-    <td><button class="submit">Add to cart</button></td>
     <td><input id="cokeBtn" type="number" min="0" max="10" step="1" value="0"></td>
+    <td><button onclick="input('Coke', cokeBtn.value);" type="submit">Add to cart</button></td>
   </tr>
   <tr>
     <td>Sprite</td>
     <td>Aisle 2</td>
-    <td><button class="submit">Add to cart</button></td>
     <td><input id="spriteBtn" type="number" min="0" max="10" step="1" value="0"></td>
+    <td><button onclick="input('Sprite', spriteBtn.value);" type="submit">Add to cart</button></td>
   </tr>
   <tr>
     <td>Dr. Pepper</td>
     <td>Aisle 2</td>
-    <td><button class="submit">Add to cart</button></td>
     <td><input id="drPepperBtn" type="number" min="0" max="10" step="1" value="0"></td>
+    <td><button onclick="input('Dr. Pepper', drPepperBtn.value);" type="submit">Add to cart</button></td>
   </tr>
   <tr>
     <td>Fanta</td>
     <td>Aisle 2</td>
-    <td><button class="submit">Add to cart</button></td>
     <td><input id="fantaBtn" type="number" min="0" max="10" step="1" value="0"></td>
+    <td><button onclick="input('Fanta', fantaBtn.value);" type="submit">Add to cart</button></td>
   </tr>
     <tr>
     <td>Root Beer</td>
     <td>Aisle 2</td>
-    <td><button class="submit">Add to cart</button></td>
     <td><input id="rootBeerBtn" type="number" min="0" max="10" step="1" value="0"></td>
+    <td><button onclick="input('Root Beer', rootBeerBtn.value);" type="submit">Add to cart</button></td>
   </tr>
     <tr>
     <td>Ginger Ale</td>
     <td>Aisle 2</td>
-    <td><button class="submit">Add to cart</button></td>
     <td><input id="gingerAleBtn" type="number" min="0" max="10" step="1" value="0"></td>
+    <td><button onclick="input('Ginger Ale', gingerAleBtn.value);" type="submit">Add to cart</button></td>
   </tr>
 
   <tr>
     <td>White Bread</td>
     <td>Aisle 3</td>
-    <td><button class="submit">Add to cart</button></td>
     <td><input id="whiteBrdBtn" type="number" min="0" max="10" step="1" value="0"></td>
+    <td><button onclick="input('White Bread', whiteBrdBtn.value);" type="submit">Add to cart</button></td>
   </tr>
   <tr>
     <td>Rye Bread</td>
     <td>Aisle 3</td>
-    <td><button class="submit">Add to cart</button></td>
     <td><input id="ryeBrdBtn" type="number" min="0" max="10" step="1" value="0"></td>
+    <td><button onclick="input('Rye Bread', ryeBrdBtn.value);" type="submit">Add to cart</button></td>
   </tr>
   <tr>
     <td>Wheat Bread</td>
     <td>Aisle 3</td>
-    <td><button class="submit">Add to cart</button></td>
     <td><input id="wheatBrdBtn" type="number" min="0" max="10" step="1" value="0"></td>
+    <td><button onclick="input('Wheat Bread', wheatBrdBtn.value);" type="submit">Add to cart</button></td>
   </tr>
   <tr>
     <td>Pumpernickel Bread</td>
     <td>Aisle 3</td>
-    <td><button class="submit">Add to cart</button></td>
     <td><input id="pumperBrdBtn" type="number" min="0" max="10" step="1" value="0"></td>
+    <td><button onclick="input('Pumpernickel Bread', mpumperBrdBtn.value);" type="submit">Add to cart</button></td>
   </tr>
 
   <tr>
     <td>Apples</td>
     <td>Aisle 4</td>
-    <td><button class="submit">Add to cart</button></td>
     <td><input id="applesBtn" type="number" min="0" max="10" step="1" value="0"></td>
+    <td><button onclick="input('Apples', applesBtn.value);" type="submit">Add to cart</button></td>
   </tr>
   <tr>
     <td>Bananas</td>
     <td>Aisle 4</td>
-    <td><button class="submit">Add to cart</button></td>
     <td><input id="bananasBtn" type="number" min="0" max="10" step="1" value="0"></td>
+    <td><button onclick="input('Bananas', bananasBtn.value);" type="submit">Add to cart</button></td>
   </tr>
   <tr>
     <td>Grapes</td>
     <td>Aisle 4</td>
-    <td><button class="submit">Add to cart</button></td>
     <td><input id="grapesBtn" type="number" min="0" max="10" step="1" value="0"></td>
+    <td><button onclick="input('Grapes', mineralsBtn.value);" type="submit">Add to cart</button></td>
   </tr>
   <tr>
     <td>Oranges</td>
     <td>Aisle 4</td>
-    <td><button class="submit">Add to cart</button></td>
     <td><input id="orangesBtn" type="number" min="0" max="10" step="1" value="0"></td>
+    <td><button onclick="input('Oranges', orangesBtn.value);" type="submit">Add to cart</button></td>
   </tr>
     <tr>
     <td>Pineapples</td>
     <td>Aisle 4</td>
-    <td><button class="submit">Add to cart</button></td>
     <td><input id="pineapplesBtn" type="number" min="0" max="10" step="1" value="0"></td>
+    <td><button onclick="input('Pineapples', pineapplesBtn.value);" type="submit">Add to cart</button></td>
   </tr>
     <tr>
     <td>Carrots</td>
     <td>Aisle 4</td>
-    <td><button class="submit">Add to cart</button></td>
     <td><input id="carrotsBtn" type="number" min="0" max="10" step="1" value="0"></td>
+      <td><button onclick="input('Carrots', carrotsBtn.value);" type="submit">Add to cart</button></td>
   </tr>
    <tr>
     <td>Lettuce</td>
     <td>Aisle 4</td>
-    <td><button class="submit">Add to cart</button></td>
     <td><input id="lettuceBtn" type="number" min="0" max="10" step="1" value="0"></td>
+     <td><button onclick="input('Lettuce', lettuceBtn.value);" type="submit">Add to cart</button></td>
   </tr>
   <tr>
     <td>Celery</td>
     <td>Aisle 4</td>
-    <td><button class="submit">Add to cart</button></td>
     <td><input id="celeryBtn" type="number" min="0" max="10" step="1" value="0"></td>
+    <td><button onclick="input('Celery', celeryBtn.value);" type="submit">Add to cart</button></td>
   </tr>
   <tr>
     <td>Cucumbers</td>
     <td>Aisle 4</td>
-    <td><button class="submit">Add to cart</button></td>
     <td><input id="cucumbersBtn" type="number" min="0" max="10" step="1" value="0"></td>
+    <td><button onclick="input('Cucumbers', cucumbersBtn.value);" type="submit">Add to cart</button></td>
   </tr>
   <tr>
     <td>Asparagus</td>
     <td>Aisle 4</td>
-    <td><button class="submit">Add to cart</button></td>
     <td><input id="asparagusBtn" type="number" min="0" max="10" step="1" value="0"></td>
+    <td><button onclick="input('Asparagus', asparagusBtn.value);" type="submit">Add to cart</button></td>
   </tr>
     <tr>
     <td>Broccoli</td>
     <td>Aisle 4</td>
-    <td><button class="submit">Add to cart</button></td>
     <td><input id="broccoliBtn" type="number" min="0" max="10" step="1" value="0"></td>
+    <td><button onclick="input('Broccoli', broccoliBtn.value);" type="submit">Add to cart</button></td>
   </tr>
     <tr>
     <td>Cauliflower</td>
     <td>Aisle 4</td>
-    <td><button class="submit">Add to cart</button></td>
     <td><input id="cauliflowerBtn" type="number" min="0" max="10" step="1" value="0"></td>
+    <td><button onclick="input('Cauliflower', cauliflowerBtn.value);" type="submit">Add to cart</button></td>
   </tr>
 
+  <tr>
+    <td>Bottled Water</td>
+    <td>Aisle 5</td>
+    <td><input id="bottledWaterBtn" type="number" min="0" max="10" step="1" value="0"></td>
+    <td><button onclick="input('Bottled Water', bottledWaterBtn.value);" type="submit">Add to cart</button></td>
+  </tr>
+  <tr>
+    <td>Purified Water</td>
+    <td>Aisle 5</td>
+    <td><input id="purifiedWaterBtn" type="number" min="0" max="10" step="1" value="0"></td>
+    <td><button onclick="input('Purified Water', purifiedWaterBtn.value);" type="submit">Add to cart</button></td>
+  </tr>
+  <tr>
+    <td>Sparkling Water</td>
+    <td>Aisle 5</td>
+    <td><input id="sparklingWaterBtn" type="number" min="0" max="10" step="1" value="0"></td>
+    <td><button onclick="input('Sparkling Water', sparklingWaterBtn.value);" type="submit">Add to cart</button></td>
+  </tr>
+  <tr>
+    <td>Mineral Water</td>
+    <td>Aisle 5</td>
+    <td><input id="mineralWaterBtn" type="number" min="0" max="10" step="1" value="0"></td>
+    <td><button onclick="input('Mineral Water', mineralWaterBtn.value);" type="submit">Add to cart</button></td>
+  </tr>
+
+  <tr>
+    <td>Apple Juice</td>
+    <td>Aisle 6</td>
+    <td><input id="appleJuiceBtn" type="number" min="0" max="10" step="1" value="0"></td>
+    <td><button onclick="input('Apple Juice', appleJuiceBtn.value);" type="submit">Add to cart</button></td>
+  </tr>
+    <tr>
+    <td>Grape Juice</td>
+    <td>Aisle 6</td>
+    <td><input id="grapeJuiceBtn" type="number" min="0" max="10" step="1" value="0"></td>
+      <td><button onclick="input('Minerals', grapeJuiceBtn.value);" type="submit">Add to cart</button></td>
+  </tr>
+  <tr>
+    <td>Orange Juice</td>
+    <td>Aisle 6</td>
+    <td><input id="orangeJuiceBtn" type="number" min="0" max="10" step="1" value="0"></td>
+     <td><button onclick="input('Orange Juice', orangeJuiceBtn.value);" type="submit">Add to cart</button></td>
+  </tr>
+  <tr>
+    <td>Pineapple Juice</td>
+    <td>Aisle 6</td>
+    <td><input id="pineappleJuiceBtn" type="number" min="0" max="10" step="1" value="0"></td>
+    <td><button onclick="input('Pineapple Juice', pineappleJuiceBtn.value);" type="submit">Add to cart</button></td>
+  </tr>
+  <tr>
+    <td>Prune Juice</td>
+    <td>Aisle 6</td>
+    <td><input id="pruneJuiceBtn" type="number" min="0" max="10" step="1" value="0"></td>
+    <td><button onclick="input('Prune Juice', pruneJuiceBtn.value);" type="submit">Add to cart</button></td>
+  </tr>
+
+  <tr>
+    <td>Beans</td>
+    <td>Aisle 7</td>
+    <td><input id="beansBtn" type="number" min="0" max="10" step="1" value="0"></td>
+    <td><button onclick="input('Beans', beansBtn.value);" type="submit">Add to cart</button></td>
+  </tr>
+  <tr>
+    <td>Chicken Noodle Soup</td>
+    <td>Aisle 7</td>
+    <td><input id="chickenNoodleSoupBtn" type="number" min="0" max="10" step="1" value="0"></td>
+      <td><button onclick="input('Chicken Noodle Soup', chickenNoodleSoupBtn.value);" type="submit">Add to cart</button></td>
+  </tr>
+  <tr>
+    <td>Sardines</td>
+    <td>Aisle 7</td>
+    <td><input id="sardinesBtn" type="number" min="0" max="10" step="1" value="0"></td>
+     <td><button onclick="input('Sardines', sardinesBtn.value);" type="submit">Add to cart</button></td>
+  </tr>
+  <tr>
+    <td>Green Beans</td>
+    <td>Aisle 7</td>
+    <td><input id="greenBeanBtn" type="number" min="0" max="10" step="1" value="0"></td>
+    <td><button onclick="input('Green Beans', greenBeanBtn.value);" type="submit">Add to cart</button></td>
+  </tr>
+  <tr>
+    <td>Peas</td>
+    <td>Aisle 7</td>
+    <td><input id="peasBtn" type="number" min="0" max="10" step="1" value="0"></td>
+    <td><button onclick="input('Peas', peasBtn.value);" type="submit">Add to cart</button></td>
+  </tr>
+  <tr>
+    <td>Beef Stew</td>
+    <td>Aisle 7</td>
+    <td><input id="beefStewBtn" type="number" min="0" max="10" step="1" value="0"></td>
+    <td><button onclick="input('Beef Stew', beefStewBtn.value);" type="submit">Add to cart</button></td>
+  </tr>
+
+  <tr>
+    <td>Saffron</td>
+    <td>Aisle 8</td>
+    <td><input id="saffronBtn" type="number" min="0" max="10" step="1" value="0"></td>
+    <td><button onclick="input('Saffron', saffronBtn.value);" type="submit">Add to cart</button></td>
+  </tr>
+  <tr>
+    <td>Paprika</td>
+    <td>Aisle 8</td>
+    <td><input id="paprikaBtn" type="number" min="0" max="10" step="1" value="0"></td>
+    <td><button onclick="input('Paprika', paprikaBtn.value);" type="submit">Add to cart</button></td>
+  </tr>
+  <tr>
+    <td>Cayenne</td>
+    <td>Aisle 8</td>
+    <td><input id="cayenneBtn" type="number" min="0" max="10" step="1" value="0"></td>
+    <td><button onclick="input('Cayenne', cayenneBtn.value);" type="submit">Add to cart</button></td>
+  </tr>
+  <tr>
+    <td>Turmeric</td>
+    <td>Aisle 8</td>
+    <td><input id="tumericBtn" type="number" min="0" max="10" step="1" value="0"></td>
+    <td><button onclick="input('Tumeric', tumericBtn.value);" type="submit">Add to cart</button></td>
+  </tr>
+    <tr>
+    <td>Thyme</td>
+    <td>Aisle 8</td>
+    <td><input id="thymeBtn" type="number" min="0" max="10" step="1" value="0"></td>
+    <td><button onclick="input('Thyme', thymeBtn.value);" type="submit">Add to cart</button></td>
+  </tr>
+    <tr>
+    <td>Oregano</td>
+    <td>Aisle 8</td>
+    <td><input id="oreganoBtn" type="number" min="0" max="10" step="1" value="0"></td>
+      <td><button onclick="input('Oregano', oreganoBtn.value);" type="submit">Add to cart</button></td>
+  </tr>
+   <tr>
+    <td>Ginger</td>
+    <td>Aisle 8</td>
+    <td><input id="gingerBtn" type="number" min="0" max="10" step="1" value="0"></td>
+     <td><button onclick="input('Ginger', mineralsBtn.value);" type="submit">Add to cart</button></td>
+  </tr>
+  <tr>
+    <td>Cumin</td>
+    <td>Aisle 8</td>
+    <td><input id="cuminBtn" type="number" min="0" max="10" step="1" value="0"></td>
+    <td><button onclick="input('Cumin', cuminBtn.value);" type="submit">Add to cart</button></td>
+  </tr>
+  <tr>
+    <td>Salt</td>
+    <td>Aisle 8</td>
+    <td><input id="saltBtn" type="number" min="0" max="10" step="1" value="0"></td>
+    <td><button onclick="input('Salt', saltBtn.value);" type="submit">Add to cart</button></td>
+  </tr>
+  <tr>
+    <td>Black Pepper</td>
+    <td>Aisle 8</td>
+    <td><input id="blackPepperBtn" type="number" min="0" max="10" step="1" value="0"></td>
+    <td><button onclick="input('Black Pepper', blackPepperBtn.value);" type="submit">Add to cart</button></td>
+  </tr>
+
+   <tr>
+    <td>Prescription Drugs</td>
+    <td>Aisle 9</td>
+    <td><input id="prescriptionDrugsBtn" type="number" min="0" max="10" step="1" value="0"></td>
+    <td><button onclick="input('Prescription Drugs', prescriptionDrugsBtn.value);" type="submit">Add to cart</button></td>
+  </tr>
+  <tr>
+    <td>Nonprescription Drugs</td>
+    <td>Aisle 9</td>
+    <td><input id="nonPrescriptionDrugsBtn" type="number" min="0" max="10" step="1" value="0"></td>
+    <td><button onclick="input('Nonprescription Drugs', nonPrescriptionDrugsBtn.value);" type="submit">Add to cart</button></td>
+  </tr>
+  <tr>
+    <td>Vitamins</td>
+    <td>Aisle 9</td>
+    <td><input id="vitaminsBtn" type="number" min="0" max="10" step="1" value="0"></td>
+    <td><button onclick="input('Vitamins', vitaminsBtn.value);" type="submit">Add to cart</button></td>
+  </tr>
+  <tr>
+    <td>Minerals</td>
+    <td>Aisle 9</td>
+    <td><input id="mineralsBtn" type="number" min="0" max="10" step="1" value="0"></td>
+    <td><button onclick="input('Minerals', mineralsBtn.value);" type="submit">Add to cart</button></td>
+  </tr>
+
+  <tr>
+    <td>Shampoo</td>
+    <td>Aisle 10</td>
+    <td><input id="shampooBtn" type="number" min="0" max="10" step="1" value="0"></td>
+    <td><button onclick="input('Shampoo', shampooBtn.value);" type="submit">Add to cart</button></td>
+  </tr>
+    <tr>
+    <td>Conditioner</td>
+    <td>Aisle 10</td>
+    <td><input id="conditionerBtn" type="number" min="0" max="10" step="1" value="0"></td>
+      <td><button onclick="input('Conditioner', conditionerBtn.value);" type="submit">Add to cart</button></td>
+  </tr>
+   <tr>
+    <td>Lotion</td>
+    <td>Aisle 10</td>
+    <td><input id="lotionBtn" type="number" min="0" max="10" step="1" value="0"></td>
+     <td><button onclick="input('Lotion', lotionBtn.value);" type="submit">Add to cart</button></td>
+  </tr>
+  <tr>
+    <td>Toothpaste</td>
+    <td>Aisle 10</td>
+    <td><input id="toothpasteBtn" type="number" min="0" max="10" step="1" value="0"></td>
+    <td><button onclick="input('Toothpaste', toothpasteBtn.value);" type="submit">Add to cart</button></td>
+  </tr>
+  <tr>
+    <td>Toothbrushes</td>
+    <td>Aisle 10</td>
+    <td><input id="toothbrushesBtn" type="number" min="0" max="10" step="1" value="0"></td>
+    <td><button onclick="input('Toothbrushes', toothbrushesBtn.value);" type="submit">Add to cart</button></td>
+  </tr>
+  <tr>
+    <td>Soap</td>
+    <td>Aisle 10</td>
+    <td><input id="soapBtn" type="number" min="0" max="10" step="1" value="0"></td>
+    <td><button onclick="input('Soap', soapBtn.value);" type="submit">Add to cart</button></td>
+  </tr>
+  <tr>
+    <td>Deodorant</td>
+    <td>Aisle 10</td>
+    <td><input id="deodorantBtn" type="number" min="0" max="10" step="1" value="0"></td>
+    <td><button onclick="input('Deodorant', deodorantBtn.value);" type="submit">Add to cart</button></td>
+  </tr>
+  <tr>
+    <td>Hairspray</td>
+    <td>Aisle 10</td>
+    <td><input id="hairsprayBtn" type="number" min="0" max="10" step="1" value="0"></td>
+    <td><button onclick="input('Hairspray', hairsprayBtn.value);" type="submit">Add to cart</button></td>
+  </tr>
+
+  <tr>
+    <td>Candy</td>
+    <td>Aisle 11</td>
+    <td><input id="candyBtn" type="number" min="0" max="10" step="1" value="0"></td>
+    <td><button onclick="input('Candy', candyBtn.value);" type="submit">Add to cart</button></td>
+  </tr>
+    <tr>
+    <td>Chips</td>
+    <td>Aisle 11</td>
+    <td><input id="chipsBtn" type="number" min="0" max="10" step="1" value="0"></td>
+      <td><button onclick="input('Chips', chipsBtn.value);" type="submit">Add to cart</button></td>
+  </tr>
+   <tr>
+    <td>Chocolate</td>
+    <td>Aisle 11</td>
+    <td><input id="chocolateBtn" type="number" min="0" max="10" step="1" value="0"></td>
+     <td><button onclick="input('Chocolate', chocolateBtn.value);" type="submit">Add to cart</button></td>
+  </tr>
+  <tr>
+    <td>Cookies</td>
+    <td>Aisle 11</td>
+    <td><input id="cookiesBtn" type="number" min="0" max="10" step="1" value="0"></td>
+    <td><button onclick="input('Cookies', cookiesBtn.value);" type="submit">Add to cart</button></td>
+  </tr>
+  <tr>
+    <td>Popcorn</td>
+    <td>Aisle 11</td>
+    <td><input id="popcornBtn" type="number" min="0" max="10" step="1" value="0"></td>
+    <td><button onclick="input('Popcorn', popcornBtn.value);" type="submit">Add to cart</button></td>
+  </tr>
+  <tr>
+    <td>Pretzels</td>
+    <td>Aisle 11</td>
+    <td><input id="pretzelsBtn" type="number" min="0" max="10" step="1" value="0"></td>
+    <td><button onclick="input('Pretzels', pretzelsBtn.value);" type="submit">Add to cart</button></td>
+  </tr>
+
+  <tr>
+    <td>Milk</td>
+    <td>Aisle 12</td>
+    <td><input id="milkBtn" type="number" min="0" max="10" step="1" value="0"></td>
+    <td><button onclick="input('Milk', milkBtn.value);" type="submit">Add to cart</button></td>
+  </tr>
+  <tr>
+    <td>Cheese</td>
+    <td>Aisle 12</td>
+    <td><input id="cheeseBtn" type="number" min="0" max="10" step="1" value="0"></td>
+    <td><button onclick="input('Cheese', cheeseBtn.value);" type="submit">Add to cart</button></td>
+  </tr>
+  <tr>
+    <td>Butter</td>
+    <td>Aisle 12</td>
+    <td><input id="butterBtn" type="number" min="0" max="10" step="1" value="0"></td>
+    <td><button onclick="input('Butter', butterBtn.value);" type="submit">Add to cart</button></td>
+  </tr>
+  <tr>
+    <td>Eggs</td>
+    <td>Aisle 12</td>
+    <td><input id="eggsBtn" type="number" min="0" max="10" step="1" value="0"></td>
+    <td><button onclick="input('Eggs', eggsBtn.value);" type="submit">Add to cart</button></td>
+  </tr>
+  <tr>
+    <td>Yogurt</td>
+    <td>Aisle 12</td>
+    <td><input id="yogurtBtn" type="number" min="0" max="10" step="1" value="0"></td>
+    <td><button onclick="input('Yogurt', yogurtBtn.value);" type="submit">Add to cart</button></td>
+  </tr>
+
+  <tr>
+    <td>Ice Cream</td>
+    <td>Aisle 13</td>
+    <td><input id="iceCreamBtn" type="number" min="0" max="10" step="1" value="0"></td>
+    <td><button onclick="input('Ice Cream', iceCreamBtn.value);" type="submit">Add to cart</button></td>
+  </tr>
+  <tr>
+    <td>Frozen Vegetables</td>
+    <td>Aisle 13</td>
+    <td><input id="frozenVegetablesBtn" type="number" min="0" max="10" step="1" value="0"></td>
+    <td><button onclick="input('Frozen Vegetables', frozenVegetablesBtn.value);" type="submit">Add to cart</button></td>
+  </tr>
+  <tr>
+    <td>Frozen Meats</td>
+    <td>Aisle 13</td>
+    <td><input id="frozenMeatsBtn" type="number" min="0" max="10" step="1" value="0"></td>
+    <td><button onclick="input('Frozen Meats', frozenMeatsBtn.value);" type="submit">Add to cart</button></td>
+  </tr>
+  <tr>
+    <td>Frozen Pizza</td>
+    <td>Aisle 13</td>
+    <td><input id="frozenPizzaBtn" type="number" min="0" max="10" step="1" value="0"></td>
+    <td><button onclick="input('Frozen Pizza', frozenPizzaBtn.value);" type="submit">Add to cart</button></td>
+  </tr>
+  <tr>
+    <td>Frozen Fruit</td>
+    <td>Aisle 13</td>
+    <td><input id="frozenFruitBtn" type="number" min="0" max="10" step="1" value="0"></td>
+    <td><button onclick="input('Frozen Fruit', frozenFruitBtn.value);" type="submit">Add to cart</button></td>
+  </tr>
 
 </table>
+</div>
+
 <br>
 
 <script>
-    function myFunction() {
+      function input(item, amt){
+        var elem = document.getElementById("myArea");
+        elem.innerHTML += item + " x" + amt + "\n"; }
+
+      function myFunction() {
       // Declare variables
       var input, filter, table, tr, td, i, txtValue;
       input = document.getElementById("myInput");
