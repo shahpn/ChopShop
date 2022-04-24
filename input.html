@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ChopShop</title>
+    <style>
+        h1 {text-align: center;}
+        h4 {text-align: center;}
+        p {text-align: left;}
+        div {text-align: center; overflow-y: auto;}
+        * {
+          box-sizing: border-box;
+        }
+
+        #myInput {
+          /*background-image: url('/css/searchicon.png');*/
+          background-position: 10px 10px;
+          background-repeat: no-repeat;
+          width: 50%;
+          font-size: 16px;
+          padding: 12px 20px 12px 40px;
+          border: 1px solid #ddd;
+          margin-bottom: 12px;
+        }
+
+        #myTable {
+          border-collapse: collapse;
+          width: 50%;
+          border: 1px solid #ddd;
+          font-size: 18px;
+          overflow-y: auto;
+        }
+
+        #myTable th, #myTable td {
+          text-align: center;
+          padding: 12px;
+        }
+
+        #myTable tr {
+          border-bottom: 1px solid #ddd;
+        }
+
+        #myTable tr.header, #myTable tr:hover {
+          background-color: #f1f1f1;
+        }
+
+        #myImg {
+          float: right;
+          padding-left: 15px;
+        }
+
+        #myArea {
+            float: right;
+            resize: none;
+        }
+
+    </style>
+</head>
+<h1>Welcome To ChopShop</h1>
+<h4> Presented to you by PythonPals &#128151 Industries </h4>
+
+<body style=background-color:powderblue;>
+<p> Enter your grocery list in the section below: </p>
+<img id=myImg align=right src="static/Aisles_Resized.png" alt="Path map cannot be loaded">
+<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names..">
+<textarea id=myArea rows=25 cols=30 placeholder="Be sure to check our coupons!"></textarea>
+
+
+<table style="overflow-y: auto;" id="myTable">
+  <tbody style="height: 100px; overflow-x: scroll">
+  <tr class="header">
+    <th style="width:20%;" onclick="sortTable(0)">Item</th>
+    <th style="width:20%;">Aisle</th>
+    <th style="width:20%;">Add to cart</th>
+    <th style="width:10%;">Qty</th>
+
+  </tr>
+  <tr>
+    <td>Spaghetti</td>
+    <td>Aisle 1</td>
+    <td><button class="submit">Add to cart</button></td>
+    <td><input id="spaghettiBtn" type="number" min="0" max="10" step="1" value="0"></td>
+  </tr>
+  <tr>
+    <td>Rigatoni</td>
+    <td>Aisle 1</td>
+    <td><button class="submit">Add to cart</button></td>
+    <td><input id="rigatoniBtn" type="number" min="0" max="10" step="1" value="0"></td>
+  </tr>
+  <tr>
+    <td>Macaroni</td>
+    <td>Aisle 1</td>
+    <td><button class="submit">Add to cart</button></td>
+    <td><input id="macaroniBtn" type="number" min="0" max="10" step="1" value="0"></td>
+  </tr>
+  <tr>
+    <td>Penne</td>
+    <td>Aisle 1</td>
+    <td><button class="submit">Add to cart</button></td>
+    <td><input id="penneBtn" type="number" min="0" max="10" step="1" value="0"></td>
+  </tr>
+    <tr>
+    <td>Pasta Sauce</td>
+    <td>Aisle 1</td>
+    <td><button class="submit">Add to cart</button></td>
+    <td><input id="pastaSauceBtn" type="number" min="0" max="10" step="1" value="0"></td>
+  </tr>
+    <tr>
+    <td>Meatballs</td>
+    <td>Aisle 1</td>
+    <td><button class="submit">Add to cart</button></td>
+    <td><input id="meatballsBtn" type="number" min="0" max="10" step="1" value="0"></td>
+  </tr>
+
+   <tr>
+    <td>Coke</td>
+    <td>Aisle 2</td>
+    <td><button class="submit">Add to cart</button></td>
+    <td><input id="cokeBtn" type="number" min="0" max="10" step="1" value="0"></td>
+  </tr>
+  <tr>
+    <td>Sprite</td>
+    <td>Aisle 2</td>
+    <td><button class="submit">Add to cart</button></td>
+    <td><input id="spriteBtn" type="number" min="0" max="10" step="1" value="0"></td>
+  </tr>
+  <tr>
+    <td>Dr. Pepper</td>
+    <td>Aisle 2</td>
+    <td><button class="submit">Add to cart</button></td>
+    <td><input id="drPepperBtn" type="number" min="0" max="10" step="1" value="0"></td>
+  </tr>
+  <tr>
+    <td>Fanta</td>
+    <td>Aisle 2</td>
+    <td><button class="submit">Add to cart</button></td>
+    <td><input id="fantaBtn" type="number" min="0" max="10" step="1" value="0"></td>
+  </tr>
+    <tr>
+    <td>Root Beer</td>
+    <td>Aisle 2</td>
+    <td><button class="submit">Add to cart</button></td>
+    <td><input id="rootBeerBtn" type="number" min="0" max="10" step="1" value="0"></td>
+  </tr>
+    <tr>
+    <td>Ginger Ale</td>
+    <td>Aisle 2</td>
+    <td><button class="submit">Add to cart</button></td>
+    <td><input id="gingerAleBtn" type="number" min="0" max="10" step="1" value="0"></td>
+  </tr>
+
+  <tr>
+    <td>White Bread</td>
+    <td>Aisle 3</td>
+    <td><button class="submit">Add to cart</button></td>
+    <td><input id="whiteBrdBtn" type="number" min="0" max="10" step="1" value="0"></td>
+  </tr>
+  <tr>
+    <td>Rye Bread</td>
+    <td>Aisle 3</td>
+    <td><button class="submit">Add to cart</button></td>
+    <td><input id="ryeBrdBtn" type="number" min="0" max="10" step="1" value="0"></td>
+  </tr>
+  <tr>
+    <td>Wheat Bread</td>
+    <td>Aisle 3</td>
+    <td><button class="submit">Add to cart</button></td>
+    <td><input id="wheatBrdBtn" type="number" min="0" max="10" step="1" value="0"></td>
+  </tr>
+  <tr>
+    <td>Pumpernickel Bread</td>
+    <td>Aisle 3</td>
+    <td><button class="submit">Add to cart</button></td>
+    <td><input id="pumperBrdBtn" type="number" min="0" max="10" step="1" value="0"></td>
+  </tr>
+
+  <tr>
+    <td>Apples</td>
+    <td>Aisle 4</td>
+    <td><button class="submit">Add to cart</button></td>
+    <td><input id="applesBtn" type="number" min="0" max="10" step="1" value="0"></td>
+  </tr>
+  <tr>
+    <td>Bananas</td>
+    <td>Aisle 4</td>
+    <td><button class="submit">Add to cart</button></td>
+    <td><input id="bananasBtn" type="number" min="0" max="10" step="1" value="0"></td>
+  </tr>
+  <tr>
+    <td>Grapes</td>
+    <td>Aisle 4</td>
+    <td><button class="submit">Add to cart</button></td>
+    <td><input id="grapesBtn" type="number" min="0" max="10" step="1" value="0"></td>
+  </tr>
+  <tr>
+    <td>Oranges</td>
+    <td>Aisle 4</td>
+    <td><button class="submit">Add to cart</button></td>
+    <td><input id="orangesBtn" type="number" min="0" max="10" step="1" value="0"></td>
+  </tr>
+    <tr>
+    <td>Pineapples</td>
+    <td>Aisle 4</td>
+    <td><button class="submit">Add to cart</button></td>
+    <td><input id="pineapplesBtn" type="number" min="0" max="10" step="1" value="0"></td>
+  </tr>
+    <tr>
+    <td>Carrots</td>
+    <td>Aisle 4</td>
+    <td><button class="submit">Add to cart</button></td>
+    <td><input id="carrotsBtn" type="number" min="0" max="10" step="1" value="0"></td>
+  </tr>
+   <tr>
+    <td>Lettuce</td>
+    <td>Aisle 4</td>
+    <td><button class="submit">Add to cart</button></td>
+    <td><input id="lettuceBtn" type="number" min="0" max="10" step="1" value="0"></td>
+  </tr>
+  <tr>
+    <td>Celery</td>
+    <td>Aisle 4</td>
+    <td><button class="submit">Add to cart</button></td>
+    <td><input id="celeryBtn" type="number" min="0" max="10" step="1" value="0"></td>
+  </tr>
+  <tr>
+    <td>Cucumbers</td>
+    <td>Aisle 4</td>
+    <td><button class="submit">Add to cart</button></td>
+    <td><input id="cucumbersBtn" type="number" min="0" max="10" step="1" value="0"></td>
+  </tr>
+  <tr>
+    <td>Asparagus</td>
+    <td>Aisle 4</td>
+    <td><button class="submit">Add to cart</button></td>
+    <td><input id="asparagusBtn" type="number" min="0" max="10" step="1" value="0"></td>
+  </tr>
+    <tr>
+    <td>Broccoli</td>
+    <td>Aisle 4</td>
+    <td><button class="submit">Add to cart</button></td>
+    <td><input id="broccoliBtn" type="number" min="0" max="10" step="1" value="0"></td>
+  </tr>
+    <tr>
+    <td>Cauliflower</td>
+    <td>Aisle 4</td>
+    <td><button class="submit">Add to cart</button></td>
+    <td><input id="cauliflowerBtn" type="number" min="0" max="10" step="1" value="0"></td>
+  </tr>
+
+
+</table>
+<br>
+
+<script>
+    function myFunction() {
+      // Declare variables
+      var input, filter, table, tr, td, i, txtValue;
+      input = document.getElementById("myInput");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("myTable");
+      tr = table.getElementsByTagName("tr");
+
+      // Loop through all table rows, and hide those who don't match the search query
+      for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[0];
+        if (td) {
+          txtValue = td.textContent || td.innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }
+      }
+    }
+
+    function sortTable(n) {
+      var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+      table = document.getElementById("myTable");
+      switching = true;
+      // Set the sorting direction to ascending:
+      dir = "asc";
+      /* Make a loop that will continue until
+      no switching has been done: */
+      while (switching) {
+        // Start by saying: no switching is done:
+        switching = false;
+        rows = table.rows;
+        /* Loop through all table rows (except the
+        first, which contains table headers): */
+        for (i = 1; i < (rows.length - 1); i++) {
+          // Start by saying there should be no switching:
+          shouldSwitch = false;
+          /* Get the two elements you want to compare,
+          one from current row and one from the next: */
+          x = rows[i].getElementsByTagName("TD")[n];
+          y = rows[i + 1].getElementsByTagName("TD")[n];
+          /* Check if the two rows should switch place,
+          based on the direction, asc or desc: */
+          if (dir == "asc") {
+            if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+              // If so, mark as a switch and break the loop:
+              shouldSwitch = true;
+              break;
+            }
+          } else if (dir == "desc") {
+            if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+              // If so, mark as a switch and break the loop:
+              shouldSwitch = true;
+              break;
+            }
+          }
+        }
+        if (shouldSwitch) {
+          /* If a switch has been marked, make the switch
+          and mark that a switch has been done: */
+          rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+          switching = true;
+          // Each time a switch is done, increase this count by 1:
+          switchcount ++;
+        } else {
+          /* If no switching has been done AND the direction is "asc",
+          set the direction to "desc" and run the while loop again. */
+          if (switchcount == 0 && dir == "asc") {
+            dir = "desc";
+            switching = true;
+          }
+        }
+      }
+    }
+</script>
+
+</body>
+</html>

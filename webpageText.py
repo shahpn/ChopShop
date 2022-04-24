@@ -14,25 +14,26 @@ def home():
     "</style>"\
     "</head>" \
     "<title> BluPrnt </title>" \
-    "<p style = color:red >"\
-    "<h1>Welcome To ChopShop<h1>" \
+    "<h1>Welcome To BluPrnt<h1>" \
     "<h4> Presented to you by PythonPals &#128151 Industries <h4>" \
     "<body>" \
     "<body style=background-color:powderblue;>" \
     "<p> Enter your grocery list in the section below: <p>" \
-    "<img align=right src=static/Aisles_Resized.png alt=Path map cannot be loaded>"\
-    "<label for =cars >"\
+    \
+    """<textarea style="resize: none" rows=25 cols=40 placeholder="Be sure to check our coupons!" ></textarea>""" \
+    "<img align=right src= BluPrnt/img.jpg alt=Path map cannot be loaded>"\
+    "< label for =cars >"\
     "<Choose a car: >" \
     "</label> "\
-    "<select name = cars id = cars>"\
-    "<option value = select > Select Option </option>"\
-          "<option value = volvo > Volvo </option>"\
-          "<option value = saab > Saab </option>"\
-          "<option value = saab > Saab </option>"\
-          "<option value = saab > Saab </option>"\
-
-    "<select>"\
-    """<textarea style="resize: none" rows=25 cols=40 placeholder="Be sure to check our coupons!" ></textarea>""" \
+    "<select name = cars id = cars >"\
+    "<option value = volvo > Volvo </option >"\
+    # < option
+    # value = "saab" > Saab < / option >
+    # < option
+    # value = "mercedes" > Mercedes < / option >
+    # < option
+    # value = "audi" > Audi < / option >
+    "<select>"
     # Import image in directory and align right. Borders?
 
     #Gabe yada yada 'to-do comments. Don't mind me ty
