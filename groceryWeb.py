@@ -9,7 +9,7 @@ import webpageText
 app = Flask(__name__)
 @app.route("/")
 def siteRun():
-    a = webpageText.home()
+    a = webpageText.index()
     return a
 
 # @app.route("/")
