@@ -6,7 +6,7 @@ from flask import request
 from flask import render_template
 import webpageText
 
-
+global visited
 # handshake = []
 #
 # app = Flask(__name__)
@@ -188,6 +188,7 @@ class layout:
                 if minDist > travel[i] and i not in visited and i in aisles:
                     dest = i
                     minDist = travel[i]
+
 
         visited.append(dest)
 
@@ -471,8 +472,10 @@ if __name__ == '__main__':
             return render_template("landing.html", path=finalPath)
 
 
+
         elif request.method == 'GET':
-            return webpageText.index()
+
+            return render_template("index.html")
 
 
     app.run()

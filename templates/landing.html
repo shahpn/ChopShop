@@ -21,8 +21,16 @@
 <body style=background-color:powderblue;>
 <div id="txtWrapper">
     <textarea style="resize: none; text-align: center" cols=150 name="pathTxt">Your path is: {{path}}</textarea>
+    <form>
+        <button onclick="goBack()">Go Back</button>
+    </form>
 </div>
 
+<script>
+    function goBack() {
+      window.history.back();
+}
+</script>
 
 
 </body>
