@@ -1,16 +1,25 @@
 from cmath import inf
 from flask import Flask
+from flask import request
 import random
 import heapq
 import webpageText
 
-
+text = ""
 
 app = Flask(__name__)
-@app.route("/")
+@app.route("/", methods=['GET', 'POST'])
 def siteRun():
-    a = webpageText.index()
-    return a
+    if request.method == 'GET':
+        a = webpageText.index()
+        return a
+    elif request.method == 'POST':
+        text = request.form.get('myTextArea')
+        text = text.replace('\r', '')
+        text = text.split('\n')
+        text.pop(-1)
+        return "You entered: {}".format(text)
+
 
 # @app.route("/")
 # def home():
@@ -23,7 +32,7 @@ def siteRun():
 
 # if __name__ == "__main__":
 #     app.run()
-app.run()
+# app.run()
 
 def divider():
     print("-------------------------")
@@ -381,4 +390,4 @@ if __name__ == '__main__':
     # print()
 
     divider()
-
+    app.run()

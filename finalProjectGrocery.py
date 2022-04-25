@@ -1,6 +1,57 @@
 from cmath import inf
 import random
 import heapq
+from flask import Flask
+from flask import request
+from flask import render_template
+import webpageText
+
+
+# handshake = []
+#
+# app = Flask(__name__)
+# @app.route("/", methods=['GET', 'POST'])
+# def siteRun():
+#     global handshake
+#     if request.method == 'POST':
+#         handshake = request.form.get('myTextArea')
+#         handshake = handshake.replace('\r', '')
+#         handshake = handshake.split('\n')
+#         handshake.pop(-1)
+#         print(handshake)
+#
+#         groceryList = handshake
+#         print()
+#         print("The items we need are:")
+#         print()
+#         print(groceryList)
+#         aisles = genAisleList(groceryList, aisleItems)
+#         print()
+#         print("These items are in:")
+#         print()
+#         print(aisles)
+#         print()
+#         print("The best path through is:")
+#         print()
+#         print(aisleLayout.shoppingPath(aisles))
+#         print()
+#
+#         divider()
+#         return str(handshake)
+#
+#
+#     elif request.method == 'GET':
+#         return webpageText.index()
+#
+# app.run()
+
+
+    # text = request.form.get('myTextArea')
+    # text = text.replace('\r', '')
+    # text = text.split('\n')
+    # text.pop(-1)
+    # return index()
+
 
 
 def divider():
@@ -223,156 +274,332 @@ if __name__ == '__main__':
 
     index = 0
 
-    groceryList = []
+    # groceryList = handshake
 
-    while index < numItems:
+    # while index < numItems:
+    #
+    #     aisleChoice = random.choice(list(aisleItems))
+    #     item = random.choice(list(aisleItems[aisleChoice]))
+    #
+    #     if item not in groceryList:
+    #         groceryList.append(item)
+    #         index += 1
+    # app.run()
+    # print()
+    # print("The items we need are:")
+    # print()
+    # print(groceryList)
+    # aisles = genAisleList(groceryList, aisleItems)
+    # print()
+    # print("These items are in:")
+    # print()
+    # print(aisles)
+    # print()
+    # print("The best path through is:")
+    # print()
+    # print(aisleLayout.shoppingPath(aisles))
+    # print()
+    #
+    # divider()
+    # app.run()
 
-        aisleChoice = random.choice(list(aisleItems))
-        item = random.choice(list(aisleItems[aisleChoice]))
+    handshake = []
 
-        if item not in groceryList:
-            groceryList.append(item)
-            index += 1
+    app = Flask(__name__)
 
-    print()
-    print("The items we need are:")
-    print()
-    print(groceryList)
-    aisles = genAisleList(groceryList, aisleItems)
-    print()
-    print("These items are in:")
-    print()
-    print(aisles)
-    print()
-    print("The best path through is:")
-    print()
-    print(aisleLayout.shoppingPath(aisles))
-    print()
 
-    divider()
+    @app.route("/", methods=['GET', 'POST'])
+    def siteRun():
+        global handshake
+        global aisles
+        if request.method == 'POST':
+            handshake = request.form.get('myTextArea')
+            handshake = handshake.replace('\r', '')
+            handshake = handshake.split('\n')
+            handshake.pop(-1)
+            print(handshake)
 
-    # Clones edges and optimal path for ease of use. ☺
-    all = aisleLayout.printEdges()
-    optimal = aisleLayout.shoppingPath(aisles)
+            groceryList = handshake
+            print()
+            print("The items we need are:")
+            print()
+            print(groceryList)
+            aisles = genAisleList(groceryList, aisleItems)
+            print()
+            print("These items are in:")
+            print()
+            print(aisles)
+            print()
+            print("The best path through is:")
+            print()
+            print(aisleLayout.shoppingPath(aisles))
+            print()
 
-    # Creates some lists to organize path sections. ☺
-    firstTry = []
-    secondTry = []
-    thirdTry = []
-    cannotDo = []
-    replacements = []
+            divider()
 
-    # Zips the list of aisles into lists of 2 consecutive aisles for path checking. ☺
-    res = list(zip(optimal, optimal[1:] + optimal[:1]))
-    for item in res:
-        firstTry.append(list(item))
+            # Clones edges and optimal path for ease of use. ☺
+            all = aisleLayout.printEdges()
+            optimal = aisleLayout.shoppingPath(aisles)
 
-    for item in all:
-        secondTry.append(item)
+            # Creates some lists to organize path sections. ☺
+            firstTry = []
+            secondTry = []
+            thirdTry = []
+            cannotDo = []
+            replacements = []
 
-    for item in firstTry:
-        if item in secondTry and item != ['Checkout', 'Entrance']:
-            thirdTry.append(item)
+            # Zips the list of aisles into lists of 2 consecutive aisles for path checking. ☺
+            res = list(zip(optimal, optimal[1:] + optimal[:1]))
+            for item in res:
+                firstTry.append(list(item))
 
-    # List of path segments we can naturally complete. ☺
-    print(f"Paths that can be achieved: {thirdTry}")
+            for item in all:
+                secondTry.append(item)
 
-    for item in thirdTry:
-        if item in firstTry and item != ['Checkout', 'Entrance']:
-            firstTry.remove(item)
+            for item in firstTry:
+                if item in secondTry and item != ['Checkout', 'Entrance']:
+                    thirdTry.append(item)
 
-    cannotDo = firstTry
+            # List of path segments we can naturally complete. ☺
+            print(f"Paths that can be achieved: {thirdTry}")
 
-    # List of path segments that cannot be naturally completed. ☺
-    print(f"Paths that cannot be achieved: {cannotDo}")
+            for item in thirdTry:
+                if item in firstTry and item != ['Checkout', 'Entrance']:
+                    firstTry.remove(item)
 
-    divider()
+            cannotDo = firstTry
 
-    # Function to generate paths for the segments that currently cannot be traversed. ☺
-    def pathGen(start, end, currentPath):
+            # List of path segments that cannot be naturally completed. ☺
+            print(f"Paths that cannot be achieved: {cannotDo}")
 
-        currentPath.append(start)
+            divider()
 
-        if start == end:
-            # Path found between required start and end node. ☺
-            print(f"Path found: {currentPath}")
-            replacements.append(currentPath)
-            return
+            # Function to generate paths for the segments that currently cannot be traversed. ☺
+            def pathGen(start, end, currentPath):
 
-        else:
-            neighbors = []
-            distances = []
+                currentPath.append(start)
 
-            # Find all potential next neighbors from the start node.
-            for i in all:
-                if start in i:
-                    for x in i:
-                        if x is not start and x not in neighbors:
-                            neighbors.append(x)
+                if start == end:
+                    # Path found between required start and end node. ☺
+                    print(f"Path found: {currentPath}")
+                    replacements.append(currentPath)
+                    return
 
-            # Compare all potential neighboring nodes' weights. ☺
-            for potential in neighbors:
-                for key in aisleLayout.dijkstra(potential):
-                    if key is potential:
-                        distances.append(
-                            {key: aisleLayout.dijkstra(potential)[end] + aisleLayout.dijkstra(start)[potential]})
+                else:
+                    neighbors = []
+                    distances = []
 
-            chosen = None
-            chosenDis = None
+                    # Find all potential next neighbors from the start node.
+                    for i in all:
+                        if start in i:
+                            for x in i:
+                                if x is not start and x not in neighbors:
+                                    neighbors.append(x)
 
-            # Determine next step in pathfinding function. ☺
-            for pair in distances:
+                    # Compare all potential neighboring nodes' weights. ☺
+                    for potential in neighbors:
+                        for key in aisleLayout.dijkstra(potential):
+                            if key is potential:
+                                distances.append(
+                                    {key: aisleLayout.dijkstra(potential)[end] + aisleLayout.dijkstra(start)[
+                                        potential]})
 
-                if chosen is None:
-                    chosen = list(pair.keys())[0]
-                    chosenDis = list(pair.values())[0]
+                    chosen = None
+                    chosenDis = None
 
-                elif int(list(pair.values())[0]) < chosenDis:
-                    chosen = list(pair.keys())[0]
-                    chosenDis = list(pair.values())[0]
+                    # Determine next step in pathfinding function. ☺
+                    for pair in distances:
 
-            pathGen(chosen, end, currentPath)
+                        if chosen is None:
+                            chosen = list(pair.keys())[0]
+                            chosenDis = list(pair.values())[0]
 
-    # Determine what path segments cannot be completed and then aim to solve them. ☺
-    for neededPath in cannotDo:
-        print(f"Path bust be found between {neededPath[0]} and {neededPath[1]}")
-        pathGen(neededPath[0], neededPath[1], [])
-        divider()
+                        elif int(list(pair.values())[0]) < chosenDis:
+                            chosen = list(pair.keys())[0]
+                            chosenDis = list(pair.values())[0]
 
-    shoppingPathClone = aisleLayout.shoppingPath(aisles)
+                    pathGen(chosen, end, currentPath)
 
-    # Zip again. ☺
-    res = list(zip(shoppingPathClone, shoppingPathClone[1:] + shoppingPathClone[:1]))
+            # Determine what path segments cannot be completed and then aim to solve them. ☺
+            for neededPath in cannotDo:
+                print(f"Path bust be found between {neededPath[0]} and {neededPath[1]}")
+                pathGen(neededPath[0], neededPath[1], [])
+                divider()
 
-    cannotDo = [tuple(x) for x in cannotDo]
+            shoppingPathClone = aisleLayout.shoppingPath(aisles)
 
-    # Format new path segments. ☺
-    for i in res:
+            # Zip again. ☺
+            res = list(zip(shoppingPathClone, shoppingPathClone[1:] + shoppingPathClone[:1]))
 
-        if i in cannotDo:
-            next1 = replacements.pop(0)
-            res[res.index(i)] = next1
+            cannotDo = [tuple(x) for x in cannotDo]
 
-    if ['Checkout', 'Entrance'] in res:
-        res.remove(['Checkout', 'Entrance'])
+            # Format new path segments. ☺
+            for i in res:
 
-    print(f"Full Path: {res}")
+                if i in cannotDo:
+                    next1 = replacements.pop(0)
+                    res[res.index(i)] = next1
 
-    cleanPath = []
+            if ['Checkout', 'Entrance'] in res:
+                res.remove(['Checkout', 'Entrance'])
 
-    for val in res:
-        for inVal in val:
-            cleanPath.append(inVal)
+            print(f"Full Path: {res}")
 
-    print(f"Clean Path: {cleanPath}")
+            cleanPath = []
 
-    previous_value = None
-    finalPath = []
+            for val in res:
+                for inVal in val:
+                    cleanPath.append(inVal)
 
-    # Replace old path segments which cannot be completed with new segments that can be completed. ☺
-    for elem in cleanPath:
-        if elem != previous_value:
-            finalPath.append(elem)
-            previous_value = elem
+            print(f"Clean Path: {cleanPath}")
 
-    print(f"Final Path: {finalPath}")
+            previous_value = None
+            finalPath = []
+
+            # Replace old path segments which cannot be completed with new segments that can be completed. ☺
+            for elem in cleanPath:
+                if elem != previous_value:
+                    finalPath.append(elem)
+                    previous_value = elem
+
+            print(f"Final Path: {finalPath}")
+
+            # return str(handshake)
+
+
+
+            return render_template("landing.html", path=finalPath)
+
+
+        elif request.method == 'GET':
+            return webpageText.index()
+
+
+    app.run()
+
+    # # Clones edges and optimal path for ease of use. ☺
+    # all = aisleLayout.printEdges()
+    # optimal = aisleLayout.shoppingPath(aisles)
+    #
+    # # Creates some lists to organize path sections. ☺
+    # firstTry = []
+    # secondTry = []
+    # thirdTry = []
+    # cannotDo = []
+    # replacements = []
+    #
+    # # Zips the list of aisles into lists of 2 consecutive aisles for path checking. ☺
+    # res = list(zip(optimal, optimal[1:] + optimal[:1]))
+    # for item in res:
+    #     firstTry.append(list(item))
+    #
+    # for item in all:
+    #     secondTry.append(item)
+    #
+    # for item in firstTry:
+    #     if item in secondTry and item != ['Checkout', 'Entrance']:
+    #         thirdTry.append(item)
+    #
+    # # List of path segments we can naturally complete. ☺
+    # print(f"Paths that can be achieved: {thirdTry}")
+    #
+    # for item in thirdTry:
+    #     if item in firstTry and item != ['Checkout', 'Entrance']:
+    #         firstTry.remove(item)
+    #
+    # cannotDo = firstTry
+    #
+    # # List of path segments that cannot be naturally completed. ☺
+    # print(f"Paths that cannot be achieved: {cannotDo}")
+    #
+    # divider()
+    #
+    # # Function to generate paths for the segments that currently cannot be traversed. ☺
+    # def pathGen(start, end, currentPath):
+    #
+    #     currentPath.append(start)
+    #
+    #     if start == end:
+    #         # Path found between required start and end node. ☺
+    #         print(f"Path found: {currentPath}")
+    #         replacements.append(currentPath)
+    #         return
+    #
+    #     else:
+    #         neighbors = []
+    #         distances = []
+    #
+    #         # Find all potential next neighbors from the start node.
+    #         for i in all:
+    #             if start in i:
+    #                 for x in i:
+    #                     if x is not start and x not in neighbors:
+    #                         neighbors.append(x)
+    #
+    #         # Compare all potential neighboring nodes' weights. ☺
+    #         for potential in neighbors:
+    #             for key in aisleLayout.dijkstra(potential):
+    #                 if key is potential:
+    #                     distances.append(
+    #                         {key: aisleLayout.dijkstra(potential)[end] + aisleLayout.dijkstra(start)[potential]})
+    #
+    #         chosen = None
+    #         chosenDis = None
+    #
+    #         # Determine next step in pathfinding function. ☺
+    #         for pair in distances:
+    #
+    #             if chosen is None:
+    #                 chosen = list(pair.keys())[0]
+    #                 chosenDis = list(pair.values())[0]
+    #
+    #             elif int(list(pair.values())[0]) < chosenDis:
+    #                 chosen = list(pair.keys())[0]
+    #                 chosenDis = list(pair.values())[0]
+    #
+    #         pathGen(chosen, end, currentPath)
+    #
+    # # Determine what path segments cannot be completed and then aim to solve them. ☺
+    # for neededPath in cannotDo:
+    #     print(f"Path bust be found between {neededPath[0]} and {neededPath[1]}")
+    #     pathGen(neededPath[0], neededPath[1], [])
+    #     divider()
+    #
+    # shoppingPathClone = aisleLayout.shoppingPath(aisles)
+    #
+    # # Zip again. ☺
+    # res = list(zip(shoppingPathClone, shoppingPathClone[1:] + shoppingPathClone[:1]))
+    #
+    # cannotDo = [tuple(x) for x in cannotDo]
+    #
+    # # Format new path segments. ☺
+    # for i in res:
+    #
+    #     if i in cannotDo:
+    #         next1 = replacements.pop(0)
+    #         res[res.index(i)] = next1
+    #
+    # if ['Checkout', 'Entrance'] in res:
+    #     res.remove(['Checkout', 'Entrance'])
+    #
+    # print(f"Full Path: {res}")
+    #
+    # cleanPath = []
+    #
+    # for val in res:
+    #     for inVal in val:
+    #         cleanPath.append(inVal)
+    #
+    # print(f"Clean Path: {cleanPath}")
+    #
+    # previous_value = None
+    # finalPath = []
+    #
+    # # Replace old path segments which cannot be completed with new segments that can be completed. ☺
+    # for elem in cleanPath:
+    #     if elem != previous_value:
+    #         finalPath.append(elem)
+    #         previous_value = elem
+    #
+    # print(f"Final Path: {finalPath}")
+

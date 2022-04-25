@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:value="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>ChopShop</title>
@@ -8,6 +8,7 @@
         h4 {text-align: center;}
         p {text-align: left;}
         div {text-align: center;}
+        button {alignment: right}
         * {
           box-sizing: border-box;
         }
@@ -56,9 +57,8 @@
           padding-left: 15px;
         }
 
-        #myArea {
+        #frm {
           float: right;
-          resize: none;
         }
 
     </style>
@@ -70,7 +70,12 @@
 <p> Enter your grocery list in the section below: </p>
 <img id=myImg align=right src="../static/Aisles_Resized.png" alt="Path map cannot be loaded">
 <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names..">
-<textarea id="myArea" rows=25 cols=30 placeholder="Be sure to check our coupons!" name="myTextArea"></textarea>
+<form id="frm" method="post">
+  <textarea style="resize: none;" id="myArea" rows=25 cols=30 placeholder="Be sure to check our coupons!" name="myTextArea"></textarea>
+  <br>
+  <button id="pathBtn">Create Path</button>
+  <button onclick="clrTxt()" id="clearbtn">Clear</button>
+</form>
 
 <div id="table-wrapper">
   <table style="overflow-y: auto;" id="myTable">
@@ -587,7 +592,21 @@
 <script>
       function input(item, amt){
         var elem = document.getElementById("myArea");
-        elem.innerHTML += item + " x" + amt + "\n"; }
+        elem.innerHTML += item + "\n";
+
+        // elem.innerHTML += item + " x" + amt + "\n";
+      }
+
+      function clrTxt() {
+        const textarea = document.getElementById('myArea');
+        textarea.value = '';
+        const btn = document.getElementById('clearbtn');
+
+        btn.addEventListener('click', function handleClick() {
+          textarea.value = '';
+        });
+      }
+
 
       function myFunction() {
       // Declare variables
