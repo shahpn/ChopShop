@@ -10,6 +10,7 @@
 
         #txtWrapper{
             alignment: center;
+
         }
 
     </style>
@@ -22,16 +23,25 @@
 <div id="txtWrapper">
     <textarea style="resize: none; text-align: center" cols=150 name="pathTxt">Your path is: {{path}}</textarea>
     <form>
-<!--        <button onclick="goBack()">Go Back</button>-->
         <br>
-        <img id=myImg align=center src="../static/Aisles_Resized.png" alt="Path map cannot be loaded">
+        <img value="{{itemPath}}" name=myImg align=center src="../static/Aisles_Resized.png" alt="Path map cannot be loaded">
     </form>
+    <br>
+    <button onclick="interactiveImg()">Visualize</button>
 </div>
 
 <script>
-    function goBack() {
-      window.history.back();
-}
+    // function goBack() {
+    //   window.history.back(); }
+
+    function interactiveImg() {
+        // var myVar = document.getElementById("myImg").value;
+        const lst = "{{itemPath}}";
+        if (lst.includes('Apples'))  {
+            window.alert("Success ig");
+        }
+
+    }
 </script>
 
 

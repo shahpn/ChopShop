@@ -4,6 +4,7 @@ import heapq
 from flask import Flask
 from flask import request
 from flask import render_template
+from PIL import Image, ImageDraw
 import webpageText
 
 global visited
@@ -304,21 +305,19 @@ if __name__ == '__main__':
     # divider()
     # app.run()
 
-    handshake = []
+
 
     app = Flask(__name__)
 
 
     @app.route("/", methods=['GET', 'POST'])
     def siteRun():
-        global handshake
         global aisles
         if request.method == 'POST':
             handshake = request.form.get('myTextArea')
             handshake = handshake.replace('\r', '')
             handshake = handshake.split('\n')
             handshake.pop(-1)
-            print(handshake)
 
             groceryList = handshake
             print()
@@ -423,7 +422,7 @@ if __name__ == '__main__':
 
             # Determine what path segments cannot be completed and then aim to solve them. ☺
             for neededPath in cannotDo:
-                print(f"Path bust be found between {neededPath[0]} and {neededPath[1]}")
+                print(f"Path must be found between {neededPath[0]} and {neededPath[1]}")
                 pathGen(neededPath[0], neededPath[1], [])
                 divider()
 
@@ -466,6 +465,59 @@ if __name__ == '__main__':
             print(f"Final Path: {finalPath}")
 
             # return str(handshake)
+
+            eTopX = 17
+            eTopY = 498
+            eRightX = 37
+            eRightY = 514
+            coLeftX = 257
+            coLeftY = 514
+            coTopX = 283
+            coTopY = 498
+            bottom1X = 50
+            bottom1Y = 485
+            top1X = 50
+            top1Y = 363
+            bottom2X = 111
+            bottom2Y = 485
+            top2X = 111
+            top2Y = 363
+            bottom3X = 179
+            bottom3Y = 485
+            top3X = 179
+            top3Y = 363
+            bottom4X = 245
+            bottom4Y = 485
+            top4X = 245
+            top4Y = 363
+
+            # aislesLocations = {
+            #     "Entrance": {"TopX": '17', 'TopY': '498'},
+            #     "Aisle 1": {'BottomX': '50','BottomY': '485', 'TopX': '50', 'TopY': '363'},
+            #     "Aisle 6": {'BottomX': '111','BottomY': '345', 'TopX': '111', 'TopY': '200'}
+            # }
+            # img = Image.open('static/Aisles_Resized.png')
+            # draw = ImageDraw.Draw(img)
+            #
+            # for i in range(len(finalPath)):
+            #     if (i == 0) and (finalPath[0] != 'Entrance'):
+            #         print('Invalid Path')
+            #         exit()
+            #     else:
+            #         if (finalPath[0] == 'Entrance'):
+            #             draw.line((int(aislesLocations[finalPath[0]]['TopX']), int(aislesLocations[finalPath[0]]['TopY']),
+            #                  int(aislesLocations[finalPath[1]]['BottomX']),
+            #                  int(aislesLocations[finalPath[1]]['BottomX'])), fill=(0, 255, 0), width=5)
+            #             img.show()
+            #
+            #     if (finalPath[i] in aislesLocations) and (finalPath[i + 1] in aislesLocations) and (finalPath[i] != 'Entrance'):
+            #         draw.line((int(aislesLocations[finalPath[i]]['TopX']), int(aislesLocations[finalPath[i]]['TopY']),
+            #                    int(aislesLocations[finalPath[i + 1]]['BottomX']), int(aislesLocations[finalPath[i + 1]]['BottomX'])), fill=(0,255,0), width=5)
+            #         img.show()
+
+
+
+
 
 
 
