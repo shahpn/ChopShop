@@ -5,55 +5,10 @@ from flask import Flask
 from flask import request
 from flask import render_template
 from PIL import Image, ImageDraw
+import time
 import webpageText
 
 global visited
-# handshake = []
-#
-# app = Flask(__name__)
-# @app.route("/", methods=['GET', 'POST'])
-# def siteRun():
-#     global handshake
-#     if request.method == 'POST':
-#         handshake = request.form.get('myTextArea')
-#         handshake = handshake.replace('\r', '')
-#         handshake = handshake.split('\n')
-#         handshake.pop(-1)
-#         print(handshake)
-#
-#         groceryList = handshake
-#         print()
-#         print("The items we need are:")
-#         print()
-#         print(groceryList)
-#         aisles = genAisleList(groceryList, aisleItems)
-#         print()
-#         print("These items are in:")
-#         print()
-#         print(aisles)
-#         print()
-#         print("The best path through is:")
-#         print()
-#         print(aisleLayout.shoppingPath(aisles))
-#         print()
-#
-#         divider()
-#         return str(handshake)
-#
-#
-#     elif request.method == 'GET':
-#         return webpageText.index()
-#
-# app.run()
-
-
-    # text = request.form.get('myTextArea')
-    # text = text.replace('\r', '')
-    # text = text.split('\n')
-    # text.pop(-1)
-    # return index()
-
-
 
 def divider():
     print("-------------------------")
@@ -163,7 +118,6 @@ class layout:
         if (len(set(visited).intersection(set(aisles))) == len(aisles)):
             finalPath = frontPath + backPath
             return finalPath
-
         # Always reset this otherwise headaches ensue
         minDist = inf
 
@@ -173,12 +127,9 @@ class layout:
 
         # Use the dijkstra method to find distances from the front of the check list
         travel = self.dijkstra(check[0])
-
         # Now we search for the one closest to our current location
         for i in travel:
-
             # current = list(travel.keys())[list(travel).index(i)]
-
             # Skips iteration if we're looking at the node we're already standing on
             if travel[i] == 0:
                 continue
@@ -491,29 +442,58 @@ if __name__ == '__main__':
             top4X = 245
             top4Y = 363
 
-            # aislesLocations = {
-            #     "Entrance": {"TopX": '17', 'TopY': '498'},
-            #     "Aisle 1": {'BottomX': '50','BottomY': '485', 'TopX': '50', 'TopY': '363'},
-            #     "Aisle 6": {'BottomX': '111','BottomY': '345', 'TopX': '111', 'TopY': '200'}
-            # }
-            # img = Image.open('static/Aisles_Resized.png')
-            # draw = ImageDraw.Draw(img)
-            #
-            # for i in range(len(finalPath)):
-            #     if (i == 0) and (finalPath[0] != 'Entrance'):
-            #         print('Invalid Path')
-            #         exit()
-            #     else:
-            #         if (finalPath[0] == 'Entrance'):
-            #             draw.line((int(aislesLocations[finalPath[0]]['TopX']), int(aislesLocations[finalPath[0]]['TopY']),
-            #                  int(aislesLocations[finalPath[1]]['BottomX']),
-            #                  int(aislesLocations[finalPath[1]]['BottomX'])), fill=(0, 255, 0), width=5)
-            #             img.show()
-            #
-            #     if (finalPath[i] in aislesLocations) and (finalPath[i + 1] in aislesLocations) and (finalPath[i] != 'Entrance'):
-            #         draw.line((int(aislesLocations[finalPath[i]]['TopX']), int(aislesLocations[finalPath[i]]['TopY']),
-            #                    int(aislesLocations[finalPath[i + 1]]['BottomX']), int(aislesLocations[finalPath[i + 1]]['BottomX'])), fill=(0,255,0), width=5)
-            #         img.show()
+            aislesLocations = {
+                "Entrance": {"TopX": '17', 'TopY': '498'},
+                "Aisle 1": {'BottomX': '50','BottomY': '485', 'TopX': '50', 'TopY': '363'},
+                "Aisle 2": {'BottomX': '111', 'BottomY': '485', 'TopX': '111', 'TopY': '363'},
+                "Aisle 3": {'BottomX': '179', 'BottomY': '485', 'TopX': '179', 'TopY': '363'},
+                "Aisle 4": {'BottomX': '245', 'BottomY': '485', 'TopX': '245', 'TopY': '363'},
+                "Aisle 5": {'BottomX': '50', 'BottomY': '345', 'TopX': '50', 'TopY': '200'},
+                "Aisle 6": {'BottomX': '111', 'BottomY': '345', 'TopX': '111', 'TopY': '200'},
+                "Aisle 7": {'BottomX': '179', 'BottomY': '345', 'TopX': '179', 'TopY': '200'},
+                "Aisle 8": {'BottomX': '245', 'BottomY': '345', 'TopX': '245', 'TopY': '200'},
+                "Aisle 9": {'BottomX': '50', 'BottomY': '182', 'TopX': '50', 'TopY': '64'},
+                "Aisle 10": {'BottomX': '111', 'BottomY': '182', 'TopX': '111', 'TopY': '64'},
+                "Aisle 11": {'BottomX': '179', 'BottomY': '182', 'TopX': '179', 'TopY': '64'},
+                "Aisle 12": {'BottomX': '245', 'BottomY': '182', 'TopX': '245', 'TopY': '64'},
+                "Aisle 13": {'BottomX': '14', 'BottomY': '10', 'TopX': '290', 'TopY': '10'},
+                "Checkout": {'TopX': '283', 'TopY': '498'}
+            }
+            img = Image.open('static/Aisles_Resized.png')
+            draw = ImageDraw.Draw(img)
+
+            for i in range(len(finalPath) - 2):
+                if (i == 0) and (finalPath[0] != 'Entrance'):
+                    print('Invalid Path')
+                    exit()
+                else:
+                    if (finalPath[0] == 'Entrance'):
+                        draw.line((int(aislesLocations[finalPath[0]]['TopX']),
+                                   int(aislesLocations[finalPath[0]]['TopY']),
+                             int(aislesLocations[finalPath[1]]['BottomX']),
+                             int(aislesLocations[finalPath[1]]['BottomY'])), fill=(0, 255, 0), width=5)
+
+                        if (finalPath[i] in aislesLocations) and (finalPath[i + 1] in aislesLocations) and (
+                                finalPath[i] != 'Entrance'):
+                            draw.line(
+                                (int(aislesLocations[finalPath[i]]['TopX']),
+                                 int(aislesLocations[finalPath[i]]['TopY']),
+                                 int(aislesLocations[finalPath[i + 1]]['BottomX']),
+                                 int(aislesLocations[finalPath[i + 1]]['BottomY'])), fill=(0, 255, 0), width=5)
+
+                    if (finalPath[-1] == 'Checkout'):
+                        draw.line((int(aislesLocations[finalPath[-2]]['TopX']),
+                                   int(aislesLocations[finalPath[-2]]['TopY']),
+                             int(aislesLocations[finalPath[-1]]['TopX']),
+                             int(aislesLocations[finalPath[-1]]['TopY'])), fill=(0, 255, 0), width=5)
+
+
+                    # Add if aisles are neighboring
+                    #Add if aisles are up and over from each other, add intersection points?
+
+                # img.show()
+
+            img = img.save("static/Visualized_Path.png")
 
 
 
