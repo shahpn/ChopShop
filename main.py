@@ -1,12 +1,8 @@
 from cmath import inf
 import random
 import heapq
-from flask import Flask
-from flask import request
-from flask import render_template
+from flask import Flask, request, render_template
 from PIL import Image, ImageDraw
-import time
-import webpageText
 
 global visited
 
@@ -510,7 +506,9 @@ if __name__ == '__main__':
             return render_template("index.html")
 
 
-    app.run()
+    if __name__ == '__main__':
+        app.run(debug=True, port=5001, host='0.0.0.0')
+
 
     # # Clones edges and optimal path for ease of use. ☺
     # all = aisleLayout.printEdges()
